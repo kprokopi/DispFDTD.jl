@@ -1,2 +1,2 @@
 # DispFDTD.jl
-Computational Electromagnetics FDTD Codes for the modeling of dispersive media.
+Computational Electromagnetics (CEM) FDTD Codes for the modelling of dispersive media.
