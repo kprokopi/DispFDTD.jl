@@ -1,3 +1,8 @@
+
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
 # One dimensional example
 Calculation of the transmittance through a slab of gold modelled as a Drude-critical point medium. A comparison between FDTD code and the analytical solution is given.  
 
