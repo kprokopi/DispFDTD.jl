@@ -1,5 +1,7 @@
 # One dimensional example
-Calculation of the transmittance through a slab of gold modelled as a Drude-critical point medium. A comparison between FDTD code and the analytical solution is given.  
+Calculation of the transmittance through a slab of gold modelled as a Drude-critical point medium. A comparison between FDTD code and the analytical solution is given in the following figure.
+
+![Transmittance](Transmittance.png)  
 
 A new dispersive model for metals has been recently proposed that includes a single Drude term and N critical point pairs . It has been proved in several works that the Drude-critical point (DCP) model can more accurately describe the dielectric dispersion of metals in infrared and optical frequencies than the widely used Drude-Lorentz medium.
 
