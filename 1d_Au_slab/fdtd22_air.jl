@@ -4,14 +4,16 @@
 
 #Code written in Julia programming language
 #Konstantinos Prokopidis, August, 24,2015
+#Revised January, 16, 2018
 
-#clear all variables
-workspace();
+#The code is tested in Julia 1.0.1
+
+using DelimitedFiles
 
 const NZ=8000; #computational domain
 const Nt=20000; #time steps
 
-#matrices
+#arrays
 global EX=zeros(Float64,NZ+1);
 global HY=zeros(Float64,NZ+1);
 global INC_ADE=zeros(Float64,1,Nt);
@@ -40,7 +42,7 @@ tw=2.0/(pi*f_high);
 t0=4.0*tw;
 
 func=zeros(Float64,Nt+1);
-func[1:Nt]=exp(-((1:Nt).*dt-t0).^2.0./tw^2.0);
+func[1:Nt]=exp.(-((1:Nt).*dt-t0*ones(Nt)).^2.0 ./tw^2.0);
 
 #FDTD coefficients
 cH=dt/(m0*dz);
@@ -82,5 +84,3 @@ end #of function
 
 #write into file
 writedlm("inc.dat",INC_ADE);
-
-

@@ -5,9 +5,11 @@
 
 #Code written in Julia programming language
 #Konstantinos Prokopidis, August, 24,2015
+#Revised January, 16, 2018
 
-#clear all variables
-workspace();
+#The code is tested in Julia 1.0.1
+
+using DelimitedFiles
 
 const NZ=8000; #computational domain
 const Nt=20000; #time steps
@@ -63,19 +65,19 @@ tw=2/(pi*f_high);
 t0=4*tw;
 
 func=zeros(Float64,Nt);
-func[1:Nt]=exp(-((1:Nt).*dt-t0).^2.0./tw^2.0);
+func[1:Nt]=exp.(-((1:Nt).*dt-t0*ones(Nt)).^2.0 ./tw^2.0);
 
 #FDTD coefficients
 #Coefficients for the Drude-CP model
 #FDTD coefficients for the critical point model
-a_0=e0.*2.*A.*Omega.*(Omega.*cos(phi_m)-Gamma.*sin(phi_m));
-a_1=-e0.*2.*A.*Omega.*sin(phi_m);
+a_0=e0*2*A.*Omega.*(Omega.*cos.(phi_m)-Gamma.*sin.(phi_m));
+a_1=-e0*2*A.*Omega.*sin.(phi_m);
 b_0=Omega.^2+Gamma.^2;
 b_1=2*Gamma;
 b_2=[1 1];
 
 
-#We extend the arrays of the coeffients in order to include the Drude
+#We extend the arrays of the coefficients in order to include the Drude
 #parameters
 a_0=[a_0 e0*omega_D^2];
 a_1=[a_1 0];
@@ -87,10 +89,10 @@ b_2=[b_2 1];
 
 C=b_2./(dt^2) + b_1 ./(2*dt) + b_0 ./4;
 
-C1=(2.*b_2/(dt^2) - b_0./2)./C;
+C1=(2*b_2/(dt^2) - b_0/2)./C;
 C2=(b_1./(2*dt)-b_2./(dt^2)-b_0./4)./C;
 C3=(a_0./4+a_1./(2*dt))./C;
-C4=a_0./(2.*C);
+C4=a_0./(2*C);
 C5=(a_0./4-a_1/(2*dt))./C;
 
 c_1=e0*epsilon_inf+(C3[1]+C3[2]+C3[3]);
@@ -178,8 +180,3 @@ end #of function
 
 #write into file
 writedlm("total.dat",TCP_ADE);
-
-
-
-
-
